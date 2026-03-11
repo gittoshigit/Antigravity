@@ -1,0 +1,27 @@
+# Codex が作成。Claude Code が読む。AI間受け渡し専用（人間レビュー不要）。
+design_id: "design-20260311-antigravity-terminal-auto-approve"
+result: "success"
+reason: "none"
+summary: "Antigravity の settings.json にターミナル自動承認設定を追加し、実装前バックアップも作成した。"
+changed_files:
+  - "C:\\Users\\kirishima04\\AppData\\Roaming\\Antigravity\\User\\settings.json"
+  - "D:\\program\\projects\\windows\\Antigravity\\docs\\PATCH.yaml"
+  - "D:\\program\\projects\\windows\\Antigravity\\state_compact.json"
+  - "D:\\program\\projects\\windows\\Antigravity\\work_journal.md"
+  - "D:\\program\\projects\\windows\\Antigravity\\current_status.md"
+  - "D:\\program\\projects\\windows\\Antigravity\\CHANGELOG_LOCAL.md"
+changes:
+  - "settings.json の既存キーを保持したまま、chat.tools.terminal.enableAutoApprove を true で追加した。"
+  - "chat.tools.terminal.autoApprove に安全な参照系・テスト系コマンドを追加し、破壊的・インストール系コマンドを false で明示した。"
+  - "chat.tools.terminal.outputLocation を none で追加した。"
+  - "settings.json.bak_20260311_160333 を同一ディレクトリに作成した。"
+steps:
+  - "settings.json の存在と現状を確認した。"
+  - "実装前バックアップ settings.json.bak_20260311_160333 を作成した。"
+  - "JSON を再読込して対象キーの追加を確認した。"
+  - "バックアップとの差分を確認し、追加キーのみで既存キー削除がないことを確認した。"
+impact: "Antigravity IDE のターミナル実行時に、安全と判断したコマンドのみ確認ダイアログが省略される。"
+unresolved:
+  - "Antigravity IDE 実画面での確認ダイアログ挙動は未検証。"
+  - "コマンド一致方式が完全一致か前方一致かは未確認。"
+verify_request: "docs/DESIGN.md と照合し、settings.json の JSON 妥当性、既存キー保持、追加キー内容、Antigravity IDE 上での安全系コマンドと危険系コマンドの確認ダイアログ挙動を検証してください。"

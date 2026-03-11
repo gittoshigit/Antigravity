@@ -1,0 +1,147 @@
+# work_journal.md（人間向け作業ログ・追記専用）
+## 永続作業ログ／引き継ぎジャーナル
+
+> **AIエージェントへ：** このファイルは**末尾のみ**を読むこと。全文を再送信しない。
+> 最新の作業状態は `state_compact.json` を主軸とすること。
+
+このファイルは作業の実行ログを残す**追記専用**ファイルです。
+**過去の記述の修正・上書き・削除は一切禁止**です。末尾に新しいブロックを追記してください。
+現在の最新状態は `current_status.md` を参照・更新してください。
+影響が残る変更（設定/運用/DB）は `CHANGELOG_LOCAL.md` を正とします。
+詳細ログを退避する場合は `work_journal_full_YYYYMMDD.md` に移し、このファイルは簡潔に保つこと。
+
+---
+
+## ■ 運用ルール
+
+- 作業単位（調査/判断/実装/修正/検証）が完了したら必ず末尾に追記する。
+- 過去の記述は絶対に変更しない（追記専用）。
+- 横断影響（FW/DNS/共有資源）があれば `<meta>/GLOBAL_CHANGES.md` にも事実のみ追記する。
+- AIへの状態引き継ぎには `state_compact.json` を使い、このファイルを丸ごと渡さない。
+- コンテキスト再送信禁止：このファイルの全文をAIに再送しない。末尾ブロックのみ渡す。
+
+---
+
+## ■ 追記テンプレ（ここから下に追記していく）
+
+## 2026-03-11 12:30
+### 種別：初期化
+### フェーズ：開始
+
+- **目的：** 手動コピーしたテンプレートを `create_project.py` で初期化する。
+- **実施内容：**
+  - `state_compact.json` 初期化
+  - `current_status.md` / `work_journal.md` / `CHANGELOG_LOCAL.md` 初期化
+- **結果：** 手動コピー後の新規プロジェクト初期状態を作成した。
+- **影響範囲：** 当該プロジェクト内
+- **未解決 / 次アクション：** `PROJECT.md` と `docs/RESEARCH.yaml` と `docs/DESIGN.md` を案件内容に更新する
+- **state_compact.json 更新済み：** はい
+
+## 2026-03-11
+- Qiita記事「ANTIGRAVITYの「青いボタン」をポチポチ押すのはもう終わり！」に基づく設定項目の調査を完了。
+- docs/RESEARCH.yaml を作成し、自動承認対象のコマンドリストと設定値を整理した。
+- state_compact.json を更新し、調査フェーズを完了（success）とした。
+- 次の工程（設計フェーズ）を Claude に引き継ぐ準備が整った。
+
+## 2026-03-11
+- ユーザーの指摘により、自動承認設定の対象を VS Code ではなく本 CLI 環境（Antigravity / Gemini CLI）へ変更。
+- cli_help を使用して、ポリシーエンジン（.toml）による自動承認の設定方法と設定ファイルの場所を特定。
+- docs/RESEARCH.yaml を Antigravity 向けの内容に全面的に書き換え。
+- 調査フェーズを完了し、設計フェーズ（Claude）へ引き継ぎ。
+
+## 2026-03-11
+- GoogleのAIエージェント・ファーストIDE「Antigravity」の設定ファイルを調査。
+- 設定ファイルが %APPDATA%\Antigravity\User\settings.json に存在することを確認。
+- docs/RESEARCH.yaml を Antigravity IDE 向けに更新し、調査フェーズを完了。
+- 設計フェーズ（Claude）へ引き継ぎ。
+
+## 2026-03-11 15:52
+### 種別：設計
+### フェーズ：設計
+
+- **目的：** `docs/RESEARCH.yaml` の内容を元に、Antigravity のターミナル自動承認設定を安全に実装するための設計書を作成する。
+- **実施内容：**
+  - `docs/DESIGN.md` を雛形から更新し、目的、要求事項、制約、実装対象、非対象、変更対象ファイル、実装手順、テスト観点、リスク、Codex 実装指示を整理
+  - `current_status.md` を設計フェーズの状況に更新
+  - `state_compact.json` を設計完了・Human 設計確認待ちへ更新
+- **結果：** Antigravity の `settings.json` に対する自動承認設定の追加方針を文書化し、実装着手前の確認待ち状態にした。
+- **影響範囲：** 当該プロジェクト内
+- **未解決 / 次アクション：** Human に `docs/DESIGN.md` を確認してもらい、`%APPDATA%\\Antigravity\\User\\settings.json` 更新の実装承認を得る
+- **プラン提示済み / ユーザー許可済み：** はい
+- **ファイル更新確認：** `docs/DESIGN.md` / `current_status.md` / `state_compact.json` / `work_journal.md` を更新
+- **state_compact.json 更新済み：** はい
+
+## 2026-03-11 15:55
+### 種別：運用改善
+### フェーズ：設計
+
+- **目的：** 担当外フェーズの成果物を Codex が誤って更新しないよう、プロジェクト固有ルールを強化する。
+- **実施内容：**
+  - `RULES.md` にフェーズ境界ゲート、Codex の禁止事項、編集前チェックを追加
+  - `state_compact.json` に再発防止ルール追加の履歴と、今回の逸脱に関する未解決事項を追記
+  - `work_journal.md` に改善内容を追記
+- **結果：** 今後は `state_compact.json` の担当と承認状態を確認しない限り、担当外成果物に触れない運用ルールを明文化した。
+- **影響範囲：** 当該プロジェクト内
+- **未解決 / 次アクション：** 既に更新してしまった `docs/DESIGN.md` を Claude 正式版で置き換えるか、先に巻き戻すかを Human が判断する
+- **プラン提示済み / ユーザー許可済み：** はい
+- **ファイル更新確認：** `RULES.md` / `state_compact.json` / `work_journal.md` を更新
+- **state_compact.json 更新済み：** はい
+
+## 2026-03-11 16:00
+### 種別：設計
+### フェーズ：設計
+
+- **目的：** `docs/RESEARCH.yaml` を元に、Claude 正式版の `docs/DESIGN.md` へ置き換える。
+- **実施内容：**
+  - Claude CLI を使って、契約章立てを満たす設計書本文を生成
+  - `docs/DESIGN.md` を Claude 正式版の内容へ更新
+  - `state_compact.json` に再生成履歴と未解決事項を反映
+- **結果：** `docs/DESIGN.md` を Human レビュー対象の正式版へ差し替え、実装前の設計確認待ち状態を維持した。
+- **影響範囲：** 当該プロジェクト内
+- **未解決 / 次アクション：** Human が `docs/DESIGN.md` を確認し、実装着手可否を判断する
+- **プラン提示済み / ユーザー許可済み：** はい
+- **ファイル更新確認：** `docs/DESIGN.md` / `state_compact.json` / `work_journal.md` を更新
+- **state_compact.json 更新済み：** はい
+
+## 2026-03-11 16:03
+### 種別：実装
+### フェーズ：実装
+
+- **目的：** `docs/DESIGN.md` に基づき、Antigravity の `settings.json` へターミナル自動承認設定を反映する。
+- **実施内容：**
+  - `C:\\Users\\kirishima04\\AppData\\Roaming\\Antigravity\\User\\settings.json` の存在と現状を確認
+  - 実装前バックアップ `settings.json.bak_20260311_160333` を作成
+  - `chat.tools.terminal.enableAutoApprove`、`chat.tools.terminal.autoApprove`、`chat.tools.terminal.outputLocation` を追加
+  - バックアップとの差分を確認し、既存キー削除がないことを確認
+  - `docs/PATCH.yaml`、`state_compact.json`、`current_status.md`、`CHANGELOG_LOCAL.md` を更新
+- **結果：** 自動承認設定の実装と引き継ぎ記録が完了し、次工程は検証フェーズとなった。
+- **影響範囲：** Antigravity IDE のユーザー設定
+- **未解決 / 次アクション：** Claude Code に検証を依頼し、IDE 上で安全系/危険系コマンドの挙動を確認する
+- **プラン提示済み / ユーザー許可済み：** はい
+- **ファイル更新確認：** `settings.json` / `docs/PATCH.yaml` / `state_compact.json` / `current_status.md` / `work_journal.md` / `CHANGELOG_LOCAL.md` を更新
+- **state_compact.json 更新済み：** はい
+
+## 2026-03-11 16:11
+### 種別：コミット
+### フェーズ：実装
+
+- **目的：** 実装後の成果物を Git リポジトリへ記録する。
+- **実施内容：**
+  - git init 済みのリポジトリに対し git add . を実行
+  - 日本語の構成案に基づき初回コミットを実行
+- **結果：** 初回コミットが正常に完了した。
+- **影響範囲：** プロジェクトリポジトリ
+- **未解決 / 次アクション：** 検証フェーズ（Claude Code）への引き継ぎ
+- **state_compact.json 更新済み：** はい
+
+## 2026-03-11 16:53
+### 種別：GitHub連携
+### フェーズ：運用
+
+- **目的：** 実装成果物を GitHub へ公開し、バックアップと共有を可能にする。
+- **実施内容：**
+  - gh repo create Antigravity --public --source=. --remote=origin --push を実行
+- **結果：** GitHub リモートリポジトリの作成と初回プッシュが成功した。
+- **影響範囲：** プロジェクト外部（GitHub）
+- **未解決 / 次アクション：** なし（初期リリース完了）
+- **state_compact.json 更新済み：** はい

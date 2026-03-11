@@ -1,0 +1,13 @@
+purpose: "Google Antigravity IDE におけるターミナル自動承認設定の調査と導入準備"
+facts:
+  - 「Antigravity」はGoogleのAIエージェント・ファーストIDEであり、VS Codeベースである。
+  - 設定ファイルの場所: `%APPDATA%\Antigravity\User\settings.json`
+  - 現状の `settings.json` には `claudeCode.allowDangerouslySkipPermissions: true` などのAIエージェント関連設定が含まれているが、ターミナル自動承認 (`chat.tools.terminal.*`) は未設定である。
+  - Qiita記事に基づき、`chat.tools.terminal.enableAutoApprove` および `chat.tools.terminal.autoApprove` を設定することで、ターミナルコマンドの実行確認を省略できる。
+unresolved:
+  - なし。
+design_handoff:
+  - `%APPDATA%\Antigravity\User\settings.json` に対して以下の項目を追加・更新する。
+  - `chat.tools.terminal.enableAutoApprove`: true
+  - `chat.tools.terminal.autoApprove`: 安全な確認・テスト系コマンドを true、破壊的・インストール系を false とするリスト。
+  - `chat.tools.terminal.outputLocation`: "none" (任意)
