@@ -12,7 +12,7 @@ changed_files:
   - "D:\\program\\projects\\windows\\Antigravity\\CHANGELOG_LOCAL.md"
 changes:
   - "settings.json の既存キーを保持したまま、chat.tools.terminal.enableAutoApprove を true で追加した。"
-  - "chat.tools.terminal.autoApprove に安全な参照系・テスト系コマンドを追加し、破壊的・インストール系コマンドを false で明示した。"
+  - "chat.tools.terminal.autoApprove に安全な参照系・テスト系コマンドおよび PowerShell コマンドを追加し、破壊的・インストール系コマンドを false で明示した。"
   - "chat.tools.terminal.outputLocation を none で追加した。"
   - "settings.json.bak_20260311_160333 を同一ディレクトリに作成した。"
 steps:

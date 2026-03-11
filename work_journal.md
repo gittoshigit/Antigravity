@@ -145,3 +145,30 @@
 - **影響範囲：** プロジェクト外部（GitHub）
 - **未解決 / 次アクション：** なし（初期リリース完了）
 - **state_compact.json 更新済み：** はい
+
+## 2026-03-11 21:51
+### 種別：実装
+### フェーズ：運用
+
+- **目的：** 現在のPC（kusma）の Antigravity IDE に対しても自動承認設定を反映する。
+- **実施内容：**
+  - Pythonスクリプトを使用して %APPDATA%\Antigravity\User\settings.json のバックアップを作成
+  - 既存キーを保持したまま、chat.tools.terminal.* の設定をマージ
+- **結果：** 現在のPC環境への反映が成功した。
+- **影響範囲：** 現在のPCの Antigravity IDE
+- **未解決 / 次アクション：** なし
+- **state_compact.json 更新済み：** はい
+
+## 2026-03-11 22:05
+### 種別：コミット
+### フェーズ：運用
+
+- **目的：** 現在の環境への自動承認設定の反映と、PowerShell参照系コマンドの追加実装をコミットする。
+- **実施内容：**
+  - `scripts/apply_settings.py` および `scripts/update_autoapprove_pwsh.py` の追加
+  - `settings.json` への PowerShell コマンド追加に伴う `docs/DESIGN.md` および `docs/PATCH.yaml` の更新
+  - 管理用ファイル（`state_compact.json`, `work_journal.md`, `CHANGELOG_LOCAL.md`）の同期
+- **結果：** 最新の作業内容をリポジトリに記録した。
+- **影響範囲：** プロジェクトリポジトリ
+- **未解決 / 次アクション：** 検証フェーズ（Claude Code）への引き継ぎ
+- **state_compact.json 更新済み：** はい

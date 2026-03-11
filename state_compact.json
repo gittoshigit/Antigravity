@@ -8,7 +8,7 @@
     "手動確認待ち": true,
     "再実行可否": false,
     "失敗分類": "none",
-    "最終判定理由": "Human による設計承認後、Antigravity の settings.json に自動承認設定を実装し、バックアップ作成と既存キー保持確認まで完了しました。次は検証フェーズです。",
+    "最終判定理由": "PowerShell系の参照コマンドも自動承認設定に追加しました。",
     "戻し先": "",
     "ブロッカー": []
   },
@@ -183,6 +183,31 @@
       "detail": {
         "実施内容": "GitHub リポジトリ Antigravity を作成し、main ブランチを origin へプッシュした。",
         "リポジトリ名": "Antigravity"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T21:51:37+09:00",
+      "event": "settings_applied_to_current_pc",
+      "detail": {
+        "実施内容": "現在のPC（kusma）の %APPDATA%\\Antigravity\\User\\settings.json に自動承認設定を反映した。",
+        "対象ディレクトリ": "C:\\Users\\kusma\\AppData\\Roaming\\Antigravity\\User"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T21:54:22+09:00",
+      "event": "powershell_commands_added",
+      "detail": {
+        "実施内容": "settings.json の autoApprove リストに PowerShell 系コマンドを追加した。",
+        "対象ファイル": "C:\\Users\\kusma\\AppData\\Roaming\\Antigravity\\User\\settings.json",
+        "設計書": "docs/DESIGN.md および docs/PATCH.yaml も合わせて更新した。"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T22:05:00+09:00",
+      "event": "commit_completed",
+      "detail": {
+        "実施内容": "PowerShell参照系コマンドの追加と設定反映スクリプトを含めた最新状態をコミットした。",
+        "コミットメッセージ": "実装: PowerShell参照系コマンドの自動承認設定の追加と反映スクリプトの整備"
       }
     }
   ]

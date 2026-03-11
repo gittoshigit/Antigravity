@@ -44,3 +44,11 @@
 - ロールバック：`settings.json.bak_20260311_160333` を `settings.json` に戻す
 - 確認方法：`settings.json` の追加キー確認、および IDE 上で `git status` / `rm` の挙動確認
 - 関連：`docs/DESIGN.md` / `docs/PATCH.yaml`
+
+## 2026-03-11
+- 種別：設定
+- 変更内容：`settings.json` の `autoApprove` リストに PowerShell 系コマンド（`Get-Location`, `Get-ChildItem`, `Get-Content` 等）を追加
+- 影響：PowerShell コマンド実行時の確認ダイアログ挙動
+- ロールバック：`settings.json.bak_20260311_215128` 等のバックアップから復元
+- 確認方法：`settings.json` の `autoApprove` リスト確認
+- 関連：`docs/DESIGN.md` / `docs/PATCH.yaml` / `scripts/apply_settings.py`
