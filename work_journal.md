@@ -173,6 +173,23 @@
 - **未解決 / 次アクション：** 検証フェーズ（Claude Code）への引き継ぎ
 - **state_compact.json 更新済み：** はい
 
+## 2026-03-12 09:49
+### 種別：調査
+### フェーズ：調査
+
+- **目的：** 現在の自動承認（パーミッションスキップ）設定の現状を把握し、報告する。
+- **実施内容：**
+  - PROJECT.md を起点に基本ルール（AGENTS.md, GLOBAL_CHANGES.md, RULES.md）を読み込み。
+  - state_compact.json および work_journal.md で直近の作業状況を確認。
+  - docs/DESIGN.md および docs/PATCH.yaml で過去の反映内容を確認。
+  - %APPDATA%\Antigravity\User\settings.json の実体を読み込み、承認リストの現状を確認。
+- **結果：** 設計通りの自動承認設定が有効であることを確認し、walkthrough.md にまとめて報告した。
+- **影響範囲：** プロジェクト管理状態の可視化
+- **未解決 / 次アクション：** なし
+- **プラン提示済み / ユーザー許可済み：** はい
+- **ファイル更新確認：** walkthrough.md の作成、state_compact.json / work_journal.md の更新
+- **state_compact.json 更新済み：** はい
+
 ## 2026-03-11 22:11
 ### 種別：修正
 ### フェーズ：運用
@@ -210,7 +227,7 @@
 ### フェーズ：運用
 
 - **目的：** auto-approve.toml が Antigravity IDE 上のターミナル（エージェント）にどう影響するかの仕様確認と回答。
-- **結論：** 
+- **結論：**
   - auto-approve.toml は **Gemini CLI (ターミナル上で動くスタンドアロンCLI)** 専用の機能であり、Antigravity IDE 内蔵のエージェントや機能には**効かない**。
   - Antigravity IDE（VS Codeベース）のエージェントが実行するコマンドの自動承認は、依然として settings.json の chat.tools.terminal.autoApprove に依存しており、こちらは**完全一致**しかサポートしていない。
 
