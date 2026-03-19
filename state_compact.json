@@ -8,7 +8,7 @@
     "手動確認待ち": true,
     "再実行可否": false,
     "失敗分類": "none",
-    "最終判定理由": "PowerShell系の参照コマンドも自動承認設定に追加しました。",
+    "最終判定理由": "VS Code ではなく、Gemini CLI 本体のポリシーエンジン（.toml）に汎用的な正規表現マッチング設定を反映しました。",
     "戻し先": "",
     "ブロッカー": []
   },
@@ -29,7 +29,8 @@
     "research": {
       "パス": "docs/RESEARCH.yaml",
       "存在": true,
-      "最終更新": "2026-03-11T13:15:00+09:00"
+      "最終更新": "2026-03-11T13:15:00+09:00",
+      "必要時のみ作成": true
     },
     "design": {
       "パス": "docs/DESIGN.md",
@@ -78,6 +79,14 @@
           "-p",
           "{claude_prompt}"
         ]
+      },
+      "gemini": {
+        "enabled": true,
+        "description": "Gemini は Web リサーチが必要な場合のみ利用する",
+        "command": [
+          "gemini",
+          "{gemini_prompt}"
+        ]
       }
     }
   },
@@ -86,7 +95,9 @@
     "design_issue": "Claude",
     "implementation_issue": "Codex",
     "environment_issue": "Human",
-    "unknown_issue": "Human"
+    "unknown_issue": "Human",
+    "research_issue": "Gemini",
+    "device_issue": "Codex または Human"
   },
   "ルール": {
     "入口ファイル": "PROJECT.md",
@@ -209,6 +220,87 @@
         "実施内容": "PowerShell参照系コマンドの追加と設定反映スクリプトを含めた最新状態をコミットした。",
         "コミットメッセージ": "実装: PowerShell参照系コマンドの自動承認設定の追加と反映スクリプトの整備"
       }
+    },
+    {
+      "timestamp": "2026-03-11T22:11:18+09:00",
+      "event": "specific_command_added",
+      "detail": {
+        "実施内容": "リダイレクトを含む python main.py コマンドを autoApprove に追加した。",
+        "追加コマンド": "pwsh -NoProfile -Command \"python main.py > artifacts/error_log.txt 2>&1\""
+      }
+    },
+    {
+      "timestamp": "2026-03-11T22:13:39+09:00",
+      "event": "generic_wildcard_commands_added",
+      "detail": {
+        "実施内容": "AIエージェントのシェルコマンド実行に汎用的に対応するため、autoApprove リストをワイルドカード（*）を用いたパターンに書き換えた。",
+        "対象ファイル": "C:\\Users\\kusma\\AppData\\Roaming\\Antigravity\\User\\settings.json"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T22:45:02+09:00",
+      "event": "gemini_cli_policy_added",
+      "detail": {
+        "実施内容": "Gemini CLI 本体（Antigravity CLI）のポリシーエンジンによる自動承認設定（~/.gemini/policies/auto-approve.toml）を作成した。",
+        "対象ファイル": "C:\\Users\\kusma\\.gemini\\policies\\auto-approve.toml"
+      }
+    },
+    {
+      "timestamp": "2026-03-11T22:55:22+09:00",
+      "event": "antigravity_ide_regex_commands_added",
+      "detail": {
+        "実施内容": "Antigravity IDE の settings.json に対し、残りのコマンドと正規表現ベースのルールを追加した。"
+      }
     }
-  ]
+  ],
+  "タスク分類": {
+    "タスク重量": "重い",
+    "合計点": 8,
+    "判定理由": [
+      "変更対象がテンプレート全体にまたがる",
+      "運用方針、状態管理、成果物契約を同時に揃える必要がある",
+      "全プロジェクト向けテンプレートのため影響範囲が広い"
+    ],
+    "軸別点数": {
+      "変更範囲": 2,
+      "不確実性": 1,
+      "外部依存": 1,
+      "実行リスク": 2,
+      "検証コスト": 2
+    }
+  },
+  "ルーティング": {
+    "research_required": false,
+    "research_reason": "今回の変更は既存テンプレート文言の再設計が中心であり、外部仕様の最新調査は不要",
+    "使用予定AI": [
+      "Codex"
+    ],
+    "使用AI一覧": [
+      "Codex"
+    ],
+    "選定理由": [
+      "テンプレート本文の再構成と整合性確認が主作業",
+      "必要なら将来の案件で Gemini や Claude を呼べるよう契約だけ整備する"
+    ],
+    "動的ルーティング結果": "Codexが分類、本文更新、状態更新、整合性確認を担当する"
+  },
+  "検証": {
+    "現在の検証段階": "環境検証完了",
+    "静的検証": {
+      "状態": "not_requested",
+      "担当": "Claude",
+      "メモ": "今回のテンプレート更新では Codex による文言整合性確認を優先し、Claude への追加依頼は未実施"
+    },
+    "環境検証": {
+      "状態": "passed",
+      "担当": "Codex",
+      "メモ": "残存表現検索と state_compact.json の JSON 読み込み確認を実施済み"
+    },
+    "実機検証": {
+      "要否": false,
+      "状態": "not_required",
+      "担当": "Codex",
+      "メモ": "今回のテンプレート更新では実機導入を伴わない"
+    }
+  }
 }
