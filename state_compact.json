@@ -1,14 +1,14 @@
 {
   "ワークフロー状態": {
-    "工程": "research",
+    "工程": "fix",
     "状態": "completed",
     "結果": "success",
-    "現在ステップ": "research",
+    "現在ステップ": "fix",
     "次ステップ": "none",
     "手動確認待ち": false,
     "再実行可否": false,
     "失敗分類": "none",
-    "最終判定理由": "自動承認系設定の現在の状態を調査・報告しました。",
+    "最終判定理由": "SSH 全体を自動承認対象に広げるため、コマンドライン全体一致ルールを追加しました。",
     "戻し先": "",
     "ブロッカー": []
   },
@@ -24,7 +24,7 @@
     "最終更新者": "Codex"
   },
   "現在の担当エージェント": "Human",
-  "次のアクション": "必要に応じて追加の設定変更を指示する",
+  "次のアクション": "Antigravity IDE 上で SSH コマンドの承認要求有無を確認する",
   "成果物": {
     "research": {
       "パス": "docs/RESEARCH.yaml",
@@ -260,6 +260,15 @@
         "対象ファイル": "settings.json",
         "次の担当": "Human"
       }
+    },
+    {
+      "timestamp": "2026-03-21T00:00:00+09:00",
+      "event": "ssh_match_commandline_rule_added",
+      "detail": {
+        "実施内容": "settings.json の chat.tools.terminal.autoApprove に SSH 全体を matchCommandLine: true で許可するルールを追加した。",
+        "対象ファイル": "C:\\Users\\kusma\\AppData\\Roaming\\Antigravity\\User\\settings.json",
+        "追加ルール": "/^ssh\\\\b.*$/"
+      }
     }
   ],
   "タスク分類": {
@@ -303,7 +312,7 @@
     "環境検証": {
       "状態": "passed",
       "担当": "Codex",
-      "メモ": "残存表現検索と state_compact.json の JSON 読み込み確認を実施済み"
+      "メモ": "settings.json への SSH 全体許可ルール追加と JSON 読み込み確認を実施済み。IDE 上の実承認挙動は Human 確認待ち"
     },
     "実機検証": {
       "要否": false,

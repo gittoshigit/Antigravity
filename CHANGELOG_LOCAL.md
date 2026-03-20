@@ -52,3 +52,11 @@
 - ロールバック：`settings.json.bak_20260311_215128` 等のバックアップから復元
 - 確認方法：`settings.json` の `autoApprove` リスト確認
 - 関連：`docs/DESIGN.md` / `docs/PATCH.yaml` / `scripts/apply_settings.py`
+
+## 2026-03-21
+- 種別：設定
+- 変更内容：`C:\\Users\\kusma\\AppData\\Roaming\\Antigravity\\User\\settings.json` の `chat.tools.terminal.autoApprove` に `ssh` 全体をコマンドライン全体一致で許可するルールを追加
+- 影響：Antigravity IDE における全 SSH 実行時の確認ダイアログ挙動
+- ロールバック：当該 `"/^ssh\\b.*$/"` ルールを削除する
+- 確認方法：Antigravity IDE 上で `ssh noteserver-ubuntu "find ~/ffxi_server -name '*.conf'"` などの SSH コマンドを実行して承認要求有無を確認
+- 関連：`work_journal.md` / `state_compact.json`

@@ -190,6 +190,21 @@
 - **ファイル更新確認：** walkthrough.md の作成、state_compact.json / work_journal.md の更新
 - **state_compact.json 更新済み：** はい
 
+## 2026-03-21 00:00
+### 種別：修正
+### フェーズ：修正
+
+- **目的：** Antigravity IDE で SSH 経由コマンド全体を自動承認対象に広げる。
+- **実施内容：**
+  - `C:\\Users\\kusma\\AppData\\Roaming\\Antigravity\\User\\settings.json` の `chat.tools.terminal.autoApprove` に、`"/^ssh\\b.*$/"` を `matchCommandLine: true` 付きで追加した。
+  - `CHANGELOG_LOCAL.md` と `state_compact.json` に今回の設定変更内容を記録した。
+- **結果：** SSH コマンドライン全体を対象に自動承認ルールを追加した。
+- **影響範囲：** 現在のPCの Antigravity IDE における全 SSH 実行
+- **未解決 / 次アクション：** IDE 側実装の制限により、実際の承認動作確認が必要
+- **プラン提示済み / ユーザー許可済み：** はい
+- **ファイル更新確認：** `settings.json` / `CHANGELOG_LOCAL.md` / `work_journal.md` / `state_compact.json` を更新予定
+- **state_compact.json 更新済み：** はい
+
 ## 2026-03-11 22:11
 ### 種別：修正
 ### フェーズ：運用
