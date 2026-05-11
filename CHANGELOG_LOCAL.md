@@ -60,3 +60,11 @@
 - ロールバック：当該 `"/^ssh\\b.*$/"` ルールを削除する
 - 確認方法：Antigravity IDE 上で `ssh noteserver-ubuntu "find ~/ffxi_server -name '*.conf'"` などの SSH コマンドを実行して承認要求有無を確認
 - 関連：`work_journal.md` / `state_compact.json`
+
+## 2026-05-12
+- 種別：ドキュメント / 運用
+- 変更内容：共通テンプレートを 2026-04-07 版へ更新。
+- 影響：プロジェクトの標準ワークフロー強化。
+- ロールバック：git restore で以前の状態に戻す。
+- 確認方法：各ファイルの更新内容確認。
+- 関連：work_journal.md 2026-05-12

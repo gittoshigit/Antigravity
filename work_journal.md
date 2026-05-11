@@ -294,3 +294,11 @@
   - これまで状態変更を伴うため除外していた `git commit` を、ユーザーの利便性向上のため `chat.tools.terminal.autoApprove` の正規表現ルール（例: `"/^pwsh.*?git\s+(status|diff|log|add|commit).*?/"`）に追加した。
   - `git add work_journal.md CHANGELOG_LOCAL.md state_compact.json && git commit -F _tmp\commit_msg.txt` などの完全一致文字列も追加した。
 - **結果：** `git commit` 系のコマンドも自動承認されるよう設定を反映した。
+
+## 2026-05-12
+### 種別：共通テンプレート更新 (2026-04-07版) 反映
+### フェーズ：運用
+
+- 目的：プロジェクト共通テンプレートの最新版（2026-04-07）を反映し、標準ワークフローと AI 相談ルールを強化する。
+- 実施内容：state_compact.json, RULES.md, PROJECT.md の更新反映。
+- 結果：最新仕様が適用された。
