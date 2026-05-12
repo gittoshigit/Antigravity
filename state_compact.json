@@ -262,6 +262,22 @@
         "対象ファイル": "C:\\Users\\kusma\\AppData\\Roaming\\Antigravity\\User\\settings.json",
         "追加ルール": "/^ssh\\\\b.*$/"
       }
+    },
+    {
+      "timestamp": "2026-05-12T10:22:29+09:00",
+      "event": "readme_creation_completed",
+      "detail": {
+        "action": "README.md の作成/更新",
+        "summary": "プロジェクト概要をまとめた README.md を作成または最新化しました。"
+      }
+    },
+    {
+      "timestamp": "2026-05-12T10:36:05+09:00",
+      "event": "readme_detailed_update_completed",
+      "detail": {
+        "action": "README.md の詳細化",
+        "summary": "プロジェクト内部を探索し、実態に即した詳細な README.md に更新しました。"
+      }
     }
   ],
   "タスク分類": {
