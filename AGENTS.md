@@ -42,6 +42,13 @@
 - Gemini: Web リサーチ、最新仕様確認
 - Human: 承認、実機操作補助、最終判断
 
+## Windows 共通ルール
+- このワークスペースの標準実行環境は Windows ネイティブとする。WSL は、Human が明示した場合のみ例外として扱う。
+- 長い出力、ログ、差分、ビルド結果、テスト結果は、可能なら要約して扱う。
+- ローカル LLM が使える環境では、長文の圧縮・分類・候補出しに活用する。既定モデルは `gemma3:12b` を優先し、使えない場合だけ代替手段に切り替える。
+- Codex / Claude Code / Gemini に共通で効かせる運用ルールは、この `workspace-meta` 配下に集約する。プロジェクト個別の例外が必要な場合だけ `PROJECT.md` や `RULES.md` に追記する。
+- 迷った場合は、まずこの `AGENTS.md` と `SESSION_CORE.md` を優先して読む。
+
 ## AI CLI 利用前提
 - この環境では `Claude Code CLI` と `Gemini CLI` を実行可能な相談手段として扱う。
 - 共通前提と基本ルールは [SESSION_CORE.md](/D:/program/workspace-meta/SESSION_CORE.md) の `環境前提` を参照する。
@@ -50,8 +57,13 @@
 ## 継続性のルール
 - 作業単位が完了したら `state_compact.json` を更新する。
 - 人間向け履歴が必要な変更は `work_journal.md` に追記する。
+- プロジェクト固有の決定、設定変更、障害対応、調査結果を後で再利用したい場合は `memory_data/projects/*.json` にも記録する。
 - 横断影響が残る変更は `GLOBAL_CHANGES.md` に記録する。
 
 ## 詳細の参照先
 - 詳細手順と例外規定: [AGENTS_DETAIL.md](/D:/program/workspace-meta/AGENTS_DETAIL.md)
 - 現在有効な横断制約: [GLOBAL_ACTIVE.md](/D:/program/workspace-meta/GLOBAL_ACTIVE.md)
+
+## コミット規約
+- コミットが必要な作業では、必ず `git-committer` スキルを使う。
+- `git commit` を直接実行せず、スキルの手順に従って事前確認と日本語コミットメッセージ生成を行う。
