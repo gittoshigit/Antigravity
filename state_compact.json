@@ -8,7 +8,7 @@
     "手動確認待ち": false,
     "再実行可否": false,
     "失敗分類": "none",
-    "最終判定理由": "SSH 全体を自動承認対象に広げるため、コマンドライン全体一致ルールを追加しました。",
+    "最終判定理由": "Antigravity の GetAgentScripts が Git worktreeConfig 拡張未対応で失敗していたため、対象プロジェクトの extensions.worktreeConfig を解除しました。",
     "戻し先": "",
     "ブロッカー": []
   },
@@ -24,7 +24,7 @@
     "最終更新者": "Codex"
   },
   "現在の担当エージェント": "Human",
-  "次のアクション": "Antigravity IDE 上で SSH コマンドの承認要求有無を確認する",
+  "次のアクション": "Antigravity で D:\\program\\projects\\android\\sudoku-overlay-solver を開き直し、agentA が使えるか確認する",
   "成果物": {
     "research": {
       "パス": "docs/RESEARCH.yaml",
@@ -278,6 +278,37 @@
         "action": "README.md の詳細化",
         "summary": "プロジェクト内部を探索し、実態に即した詳細な README.md に更新しました。"
       }
+    },
+    {
+      "timestamp": "2026-05-12T22:20:45+09:00",
+      "event": "explorer_context_menu_registered",
+      "detail": {
+        "実施内容": "Explorer のファイル/フォルダ右クリックメニューに Antigravity を登録した。",
+        "対象キー": [
+          "HKCU\\Software\\Classes\\*\\shell\\Antigravity",
+          "HKCU\\Software\\Classes\\Directory\\shell\\Antigravity"
+        ],
+        "起動コマンド": "\"C:\\Users\\kusma\\AppData\\Local\\Programs\\Antigravity\\Antigravity.exe\" --new-window \"%1\""
+      }
+    },
+    {
+      "timestamp": "2026-05-12T22:23:00+09:00",
+      "event": "explorer_background_context_menu_registered",
+      "detail": {
+        "実施内容": "Explorer のフォルダ空白部分の右クリックメニューに Antigravity を登録した。",
+        "対象キー": "HKCU\\Software\\Classes\\Directory\\Background\\shell\\Antigravity",
+        "起動コマンド": "\"C:\\Users\\kusma\\AppData\\Local\\Programs\\Antigravity\\Antigravity.exe\" --new-window \"%V\""
+      }
+    },
+    {
+      "timestamp": "2026-05-17T19:50:00+09:00",
+      "event": "antigravity_agent_worktreeconfig_fix_applied",
+      "detail": {
+        "実施内容": "Antigravity の GetAgentScripts 失敗原因として確認した Git worktreeConfig 拡張を、対象プロジェクト D:\\program\\projects\\android\\sudoku-overlay-solver で解除した。",
+        "対象設定": "D:\\program\\projects\\android\\sudoku-overlay-solver\\.git\\config / extensions.worktreeConfig",
+        "検証": "git config --get extensions.worktreeConfig が未設定になり、core.repositoryformatversion=0 のみ残っていることを確認した。",
+        "次の確認": "Antigravity で対象プロジェクトを開き直し、agentA が使えるか実機確認する。"
+      }
     }
   ],
   "タスク分類": {
@@ -322,7 +353,7 @@
     "環境検証": {
       "状態": "passed",
       "担当": "Codex",
-      "メモ": "settings.json への SSH 全体許可ルール追加と JSON 読み込み確認を実施済み。IDE 上の実承認挙動は Human 確認待ち"
+      "メモ": "対象プロジェクトの extensions.worktreeConfig 解除後、git config 上で未設定になったことを確認済み。Antigravity IDE 上の agentA 実動作は Human 確認待ち"
     },
     "実機検証": {
       "要否": false,

@@ -320,3 +320,34 @@
 - 目的：README.md の詳細化（探索型）
 - 実施内容：ディレクトリ構造や主要スクリプトの中身を解析し、より具体的なプロジェクト解説を README.md に反映しました。
 - 結果：プロジェクトの技術スタックや構造が README で一目で把握可能になりました。
+
+
+## 📅 2026-05-12 22:20
+### 種別：環境設定
+
+- 目的：Explorer の右クリックメニューから Antigravity を起動できるようにする
+- 実施内容：`HKCU\\Software\\Classes\\*\\shell\\Antigravity` と `HKCU\\Software\\Classes\\Directory\\shell\\Antigravity` を登録し、ファイル/フォルダの右クリックから `Antigravityで開く` を起動可能にしました。
+- 結果：ユーザー単位の Explorer コンテキストメニュー登録が完了しました。
+- 影響範囲：現在の Windows ユーザーの Explorer メニュー
+- 未解決/次アクション：Explorer を再起動して表示確認を行う
+
+
+## 📅 2026-05-12 22:23
+### 種別：環境設定
+
+- 目的：Explorer の空白部分右クリックからも Antigravity を起動できるようにする
+- 実施内容：`HKCU\\Software\\Classes\\Directory\\Background\\shell\\Antigravity` を登録し、フォルダ背景の右クリックから `Antigravityで開く` を起動可能にしました。
+- 結果：フォルダ空白部分にもコンテキストメニュー登録が追加されました。
+- 影響範囲：現在の Windows ユーザーの Explorer メニュー
+- 未解決/次アクション：Explorer を再起動して表示確認を行う
+
+
+## 📅 2026-05-17 19:50
+### 種別：障害対応
+
+- 目的：一部プロジェクトで Antigravity の agentA が使えない原因を解消する
+- 原因：対象プロジェクト `D:\program\projects\android\sudoku-overlay-solver` の Git 設定で `extensions.worktreeConfig=true` が有効になっており、Antigravity Language Server の `GetAgentScripts` が `core.repositoryformatversion does not support extension: worktreeconfig` で失敗していた。
+- 実施内容：対象プロジェクトの `.git/config` から `extensions.worktreeConfig` を解除した。削除や worktree 整理は実施していない。
+- 検証：`git config --get extensions.worktreeConfig` が未設定になり、`core.repositoryformatversion=0` のみ残っていることを確認した。
+- 影響範囲：`D:\program\projects\android\sudoku-overlay-solver` のローカル Git 設定
+- 未解決/次アクション：Antigravity で対象プロジェクトを開き直し、agentA が使えるか確認する
