@@ -309,6 +309,14 @@
         "検証": "git config --get extensions.worktreeConfig が未設定になり、core.repositoryformatversion=0 のみ残っていることを確認した。",
         "次の確認": "Antigravity で対象プロジェクトを開き直し、agentA が使えるか実機確認する。"
       }
+    },
+    {
+      "timestamp": "2026-05-18T18:37:00+09:00",
+      "event": "workspace_scan_completed",
+      "detail": {
+        "実施内容": "D:\\program\\projects 配下の全 Git プロジェクト（68個）を対象に、エージェントAIの GetAgentScripts に影響を与える `extensions.worktreeConfig` や `[extensions]` 設定の有無をスキャンした。",
+        "結果": "対象設定を持つプロジェクトは 0 件であり、すべて安全であることを確認した。"
+      }
     }
   ],
   "タスク分類": {

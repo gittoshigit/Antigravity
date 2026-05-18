@@ -351,3 +351,14 @@
 - 検証：`git config --get extensions.worktreeConfig` が未設定になり、`core.repositoryformatversion=0` のみ残っていることを確認した。
 - 影響範囲：`D:\program\projects\android\sudoku-overlay-solver` のローカル Git 設定
 - 未解決/次アクション：Antigravity で対象プロジェクトを開き直し、agentA が使えるか確認する
+
+## 📅 2026-05-18 18:37
+### 種別：調査
+
+- 目的：D:\program配下のプロジェクトにおけるエージェントAI（Antigravity）動作不可の可能性調査
+- 実施内容：
+  - D:\program\projects 配下の全 Git プロジェクト（計68個）の `.git/config` ファイルを対象に、原因となる `worktreeConfig` および `[extensions]` 設定の有無を網羅的にスキャン調査した。
+- 結果：
+  - 該当する設定を持つプロジェクトは 0 件であり、前回の `sudoku-overlay-solver` での対策適用以降、同様の問題を抱えるプロジェクトは現時点で存在しないことを確認した。
+- 影響範囲：なし
+- 未解決/次アクション：特になし
